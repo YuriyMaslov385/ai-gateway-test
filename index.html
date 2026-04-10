@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Аналитика ЖК — инвестиционная панель</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="section hero" id="hero">
+    <div class="hero__content card">
+      <span class="eyebrow">Инвестиционная панель ЖК</span>
+      <h1>Успейте зафиксировать лучший вход в проект</h1>
+      <p>Комплексная аналитика по ликвидности, спросу и доходности для резидентов и инвесторов. Все данные обновляются автоматически.</p>
+      <div class="hero__cta">
+        <button class="btn btn-primary">Получить персональный расчёт</button>
+        <button class="btn btn-secondary">Скачать презентацию</button>
+      </div>
+      <div class="proof-grid">
+        <div class="proof-item">
+          <strong>92%</strong>
+          <span>лот продан за 30 дней</span>
+        </div>
+        <div class="proof-item">
+          <strong>+18%</strong>
+          <span>рост стоимости за 12 мес</span>
+        </div>
+        <div class="proof-item">
+          <strong>4,8/5</strong>
+          <span>оценка жителей</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero__visual card">
+      <h3>История сделок</h3>
+      <div class="line-chart" aria-hidden="true">
+        <div class="line-chart__line"></div>
+      </div>
+      <p class="chart-caption">Фактическая динамика цен с подтверждением сделками</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="section" id="why-now">
+      <h2>Почему сейчас?</h2>
+      <div class="grid two-columns">
+        <article class="card">
+          <h3>Цена м²: прошлое + прогноз</h3>
+          <div class="chart chart--area" role="img" aria-label="График цены за квадратный метр"></div>
+          <p class="hint">Прогноз основан на данных Росреестра и темпах выдачи ипотеки.</p>
+        </article>
+        <article class="card">
+          <h3>Если сегодня vs через 3 месяца</h3>
+          <table class="table table--compact">
+            <thead>
+              <tr>
+                <th>Показатель</th>
+                <th>Сегодня</th>
+                <th>Через 3 мес</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Цена м²</td>
+                <td><span id="now-price">320 000 ₽</span></td>
+                <td><span id="future-price">342 000 ₽</span></td>
+              </tr>
+              <tr>
+                <td>Первоначальный взнос</td>
+                <td id="now-down">3 200 000 ₽</td>
+                <td id="future-down">3 420 000 ₽</td>
+              </tr>
+              <tr>
+                <td>Ежемесячный платёж</td>
+                <td id="now-payment">184 300 ₽</td>
+                <td id="future-payment">197 600 ₽</td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
+      </div>
+      <article class="card mt">
+        <h3>Мини-калькулятор потерь</h3>
+        <form class="form-grid" id="loss-calculator">
+          <label>
+            Площадь, м²
+            <input type="number" name="area" value="55" min="20" />
+          </label>
+          <label>
+            Текущая цена м², ₽
+            <input type="number" name="price" value="320000" step="1000" />
+          </label>
+          <label>
+            Прогноз роста, % в месяц
+            <input type="number" name="growth" value="1.8" step="0.1" />
+          </label>
+          <button type="submit" class="btn btn-primary">Рассчитать упущенную выгоду</button>
+        </form>
+        <p class="result" id="loss-result">Если отложить покупку на 3 месяца, вы переплатите <strong>≈ 316 800 ₽</strong>.</p>
+      </article>
+    </section>
+
+    <section class="section" id="why-this-project">
+      <h2>Почему этот ЖК?</h2>
+      <div class="grid three-columns">
+        <article class="card">
+          <h3>Спидометр спроса</h3>
+          <div class="gauge" role="img" aria-label="Уровень спроса"></div>
+          <p class="hint">85-й процентиль по городу, 2 недели средний срок экспозиции.</p>
+        </article>
+        <article class="card">
+          <h3>Heatmap этажей и корпусов</h3>
+          <div class="heatmap">
+            <div class="heatmap__row"><span>Корпус A</span><div class="heatmap__cells"><i data-intensity="0.9"></i><i data-intensity="0.7"></i><i data-intensity="0.5"></i></div></div>
+            <div class="heatmap__row"><span>Корпус B</span><div class="heatmap__cells"><i data-intensity="1"></i><i data-intensity="0.6"></i><i data-intensity="0.4"></i></div></div>
+            <div class="heatmap__row"><span>Корпус C</span><div class="heatmap__cells"><i data-intensity="0.8"></i><i data-intensity="0.5"></i><i data-intensity="0.3"></i></div></div>
+          </div>
+          <p class="hint">Тёмные ячейки — лоты с максимальным спросом и премией к рынку.</p>
+        </article>
+        <article class="card">
+          <h3>Активность комьюнити</h3>
+          <div class="sparkline" role="img" aria-label="График активности комьюнити"></div>
+          <ul class="tag-list">
+            <li>Чаты жителей: +240 новых сообщений/нед</li>
+            <li>События оффлайн: 6 в месяц</li>
+            <li>Ликвидность: 3,4 заявки на лот</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="personal-selection">
+      <h2>Персональный подбор</h2>
+      <div class="card">
+        <form class="filter-bar">
+          <label>Корпус
+            <select>
+              <option>Любой</option>
+              <option>Корпус A</option>
+              <option>Корпус B</option>
+              <option>Корпус C</option>
+            </select>
+          </label>
+          <label>Площадь
+            <select>
+              <option>от 30 до 45 м²</option>
+              <option>от 45 до 60 м²</option>
+              <option>от 60 до 80 м²</option>
+              <option>80+ м²</option>
+            </select>
+          </label>
+          <label>Тип сделки
+            <select>
+              <option>Ипотека</option>
+              <option>100% оплата</option>
+              <option>Рассрочка</option>
+            </select>
+          </label>
+          <label>Цель
+            <select>
+              <option>Инвестиции</option>
+              <option>Для жизни</option>
+              <option>Сдача в аренду</option>
+            </select>
+          </label>
+          <button type="button" class="btn btn-primary">Подобрать</button>
+        </form>
+        <div class="table-wrapper">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Лот</th>
+                <th>Площадь</th>
+                <th>Цена</th>
+                <th>Доходность</th>
+                <th>Индекс выгоды</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <span class="badge badge-accent">Лот дня</span>
+                  12A-45
+                </td>
+                <td>48 м²</td>
+                <td>15,4 млн ₽</td>
+                <td>6,8% годовых</td>
+                <td><strong>1,24</strong></td>
+                <td><button class="btn btn-link">PDF</button></td>
+              </tr>
+              <tr>
+                <td>9B-18</td>
+                <td>62 м²</td>
+                <td>18,9 млн ₽</td>
+                <td>7,5% годовых</td>
+                <td><strong>1,18</strong></td>
+                <td><button class="btn btn-link">PDF</button></td>
+              </tr>
+              <tr>
+                <td>7C-03</td>
+                <td>35 м²</td>
+                <td>11,2 млн ₽</td>
+                <td>5,9% годовых</td>
+                <td><strong>1,05</strong></td>
+                <td><button class="btn btn-link">PDF</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="actions">
+          <button class="btn btn-secondary">PDF-отчёт по подборке</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="financial-calculator">
+      <h2>Финансовый калькулятор</h2>
+      <div class="grid two-columns">
+        <article class="card">
+          <form class="form-grid" id="finance-form">
+            <label>Стоимость объекта, млн ₽
+              <input type="number" name="price" value="16" step="0.1" />
+            </label>
+            <label>Аванс, %
+              <input type="number" name="down" value="20" step="1" />
+            </label>
+            <label>Ставка ипотеки, %
+              <input type="number" name="rate" value="6.5" step="0.1" />
+            </label>
+            <label>Срок, лет
+              <input type="number" name="term" value="20" min="1" />
+            </label>
+            <label>Аренда, тыс ₽/мес
+              <input type="number" name="rent" value="180" step="1" />
+            </label>
+            <label>Расходы, тыс ₽/мес
+              <input type="number" name="cost" value="38" step="1" />
+            </label>
+            <label>Дисконт, %
+              <input type="number" name="discount" value="9" step="0.1" />
+            </label>
+            <button type="submit" class="btn btn-primary">Пересчитать</button>
+          </form>
+        </article>
+        <article class="card results" id="finance-results">
+          <h3>Итоги</h3>
+          <div class="results__grid">
+            <div><span>ROI</span><strong id="roi">0%</strong></div>
+            <div><span>IRR</span><strong id="irr">0%</strong></div>
+            <div><span>NPV</span><strong id="npv">0 ₽</strong></div>
+            <div><span>Real Return</span><strong id="real-return">0%</strong></div>
+            <div><span>Ownership Index</span><strong id="ownership">0</strong></div>
+          </div>
+          <div class="chart chart--bars" aria-label="Эффект инфляции на ипотеку">
+            <div class="chart__bar" id="inflation-bar"></div>
+          </div>
+          <div class="sliders">
+            <label>Инфляция, %
+              <input type="range" id="inflation-slider" min="0" max="12" value="6" />
+            </label>
+            <label>Рост аренды, %
+              <input type="range" id="rent-slider" min="0" max="15" value="4" />
+            </label>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="commerce-analytics">
+      <h2>Коммерция: бизнес-аналитика</h2>
+      <div class="grid two-columns">
+        <article class="card">
+          <h3>Прогноз выручки по трафику</h3>
+          <div class="line-chart line-chart--dual"></div>
+          <p class="hint">Модель строится на данных по трафику ТРЦ и средних чеках арендаторов.</p>
+        </article>
+        <article class="card">
+          <h3>Карта помещений</h3>
+          <div class="floor-map">
+            <div class="floor-map__cell" data-status="busy">A1</div>
+            <div class="floor-map__cell" data-status="reserved">A2</div>
+            <div class="floor-map__cell" data-status="free">A3</div>
+            <div class="floor-map__cell" data-status="busy">B1</div>
+            <div class="floor-map__cell" data-status="free">B2</div>
+            <div class="floor-map__cell" data-status="reserved">B3</div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="benchmarking">
+      <h2>Benchmarking</h2>
+      <div class="grid two-columns">
+        <article class="card">
+          <h3>Карта кейсов</h3>
+          <div class="case-map"></div>
+        </article>
+        <article class="card">
+          <h3>Карточки успеха</h3>
+          <div class="success-cards">
+            <div class="success-card">
+              <h4>ЖК «Северный парк»</h4>
+              <p>ROI: 21% • Payback: 4,2 года</p>
+            </div>
+            <div class="success-card">
+              <h4>Апарт-комплекс «Статус»</h4>
+              <p>ROI: 17% • Payback: 5,1 года</p>
+            </div>
+            <div class="success-card">
+              <h4>ЖК «Город столиц»</h4>
+              <p>ROI: 24% • Payback: 3,7 года</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="commercial-payback">
+      <h2>Калькулятор окупаемости (коммерция)</h2>
+      <div class="grid two-columns">
+        <article class="card">
+          <form class="form-grid" id="commercial-form">
+            <label>Стоимость покупки, млн ₽
+              <input type="number" name="purchase" value="48" step="0.5" />
+            </label>
+            <label>Аренда, тыс ₽/мес
+              <input type="number" name="lease" value="390" />
+            </label>
+            <label>Операционные расходы, тыс ₽/мес
+              <input type="number" name="opcost" value="120" />
+            </label>
+            <label>Рост трафика, %
+              <input type="number" name="traffic" value="8" />
+            </label>
+            <button type="submit" class="btn btn-primary">Сравнить сценарии</button>
+          </form>
+        </article>
+        <article class="card" id="commercial-results">
+          <h3>Купить vs Арендовать</h3>
+          <div class="comparison">
+            <div>
+              <h4>Покупка</h4>
+              <p>Срок окупаемости: <strong id="buy-payback">0</strong> лет</p>
+              <p>Кэшфлоу: <strong id="buy-cash">0 ₽/мес</strong></p>
+            </div>
+            <div>
+              <h4>Аренда</h4>
+              <p>Экономия: <strong id="rent-saving">0 ₽/мес</strong></p>
+              <p>Payback аналогов: <strong>6,1 года</strong></p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="methodology">
+      <h2>Методология и источники</h2>
+      <div class="card">
+        <div class="columns">
+          <div>
+            <h3>Источники данных</h3>
+            <ul class="checklist">
+              <li>Росреестр, Федстат — сделки и регистрация ДДУ</li>
+              <li>ЕМИСС — макроэкономика и инфляция</li>
+              <li>Дашборды девелопера — CRM по броням</li>
+              <li>Партнёры по аренде — ставки и загрузка</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Частота обновления</h3>
+            <ul class="checklist">
+              <li>Цены — ежедневно</li>
+              <li>Спрос и брони — каждый час</li>
+              <li>Комьюнити — еженедельно</li>
+              <li>Макро — ежемесячно</li>
+            </ul>
+          </div>
+        </div>
+        <button class="btn btn-secondary" id="methodology-btn">Как считаем</button>
+      </div>
+      <div class="modal" id="methodology-modal" aria-hidden="true">
+        <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+          <button class="modal__close" id="modal-close" aria-label="Закрыть"></button>
+          <h3 id="modal-title">Методика расчётов</h3>
+          <p>Мы используем смешанную модель DCF + рыночные мультипликаторы. Для прогноза цены учитываются ставки по ипотеке, объём выдач и активность конкурентов. Доходность рассчитывается с учётом инфляции и дисконтирования.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contacts">
+      <h2>Контакты и CTA</h2>
+      <div class="grid two-columns">
+        <article class="card">
+          <h3>Остались вопросы?</h3>
+          <p>Оставьте заявку или напишите в Telegram — подготовим индивидуальный отчёт по вашему сценарию.</p>
+          <div class="actions">
+            <button class="btn btn-primary">Запросить консультацию</button>
+            <button class="btn btn-secondary">Получить PDF-отчёт</button>
+          </div>
+        </article>
+        <article class="card card--qr">
+          <h3>Telegram-бот</h3>
+          <p>Сканируйте QR-код, чтобы перейти в нашего бота и получать обновления по лотам.</p>
+          <div class="qr-placeholder" aria-hidden="true">QR</div>
+          <button class="btn btn-link">Открыть в Telegram</button>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>© 2024 Девелопер «Новая высота»</span>
+    <nav class="footer__cta">
+      <a href="#hero" class="btn btn-link">Наверх</a>
+      <button class="btn btn-primary">Забронировать лот</button>
+      <button class="btn btn-secondary">Получить КП</button>
+    </nav>
+  </footer>
+
+  <script src="scripts.js"></script>
+</body>
+</html>
